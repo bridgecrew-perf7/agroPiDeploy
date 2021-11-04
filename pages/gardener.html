@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../CSS/style.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Gardener</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <!--navbar-->
+        <div class="row">
+
+            <nav class="navbar navbar-dark bg-dark nav-fill w-100" id="top-navbar">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="navbar-brand">Gardener</a>
+                        <a class="btn btn-primary" href="index.html">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-sm">
+                <img src="../images/genericprofilepicture.png" class="img-thumbnail" width="100px"
+                    alt="Profile-picture">
+            </div>
+            <div class="col-sm">
+                <h2>Gus Fox</h2>
+            </div>
+            <div class="col-sm">
+                <a class="btn btn-primary pull-right" data-bs-toggle="modal" data-bs-target="#editSelf">Edit profile</a>
+            </div>
+        </div>
+
+        <!-- table -->
+        <div class="row">
+            <div class="col-sm">
+                <table id="plantTable" class="table table-hover table-sm">
+                    <thead class="table-dark">
+                        <tr>
+                            <th></th>
+                            <th>Plant name</th>
+                            <th>Species</th>
+                            <th>Temperature</th>
+                            <th>Air humidity</th>
+                            <th>Soil moisture</th>
+                            <th>Light intensity</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="plant in plants">
+                            <td><input type="checkbox"></td>
+                            <td>{{plant.name}}</td>
+                            <td>{{plant.species}}</td>
+                            <td>
+                                <ul style="list-style-type: none">
+                                    <li>Optimal: {{plant.best_temperature}}</li>
+                                    <li>Margin: {{plant.temperature_margin}}</li>
+                                </ul>
+                            </td>                            
+                            <td>
+                                <ul style="list-style-type: none">
+                                    <li>Optimal: {{plant.best_air_humidity}}</li>
+                                    <li>Margin: {{plant.air_humidity_margin}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul style="list-style-type: none">
+                                    <li>Optimal: {{plant.best_soil_moisture}}</li>
+                                    <li>Margin: {{plant.soil_moisture_margin}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul style="list-style-type: none">
+                                    <li>Optimal: {{plant.best_light}}</li>
+                                    <li>Margin: {{plant.light_margin}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#addPlantGardener">Add plant</button>
+                <button type="button" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!--modal window edit self-->
+    <div class="modal fade" id="editSelf" tabindex="-1" role="dialog" aria-labelledby="EditSelfLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EditSelfLabel">Edit profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Username">Username: </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Email">Email: </label>
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button id="saveChanges" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--modal window add plant gardener-->
+    <div class="modal fade" id="addPlantGardener" tabindex="-1" role="dialog" aria-labelledby="addPlantGardenerLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AddPlantGardenerLabel">Add plant</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="plantName" class="col-form-label">Plant species: </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col">
+                                    Humidity:
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="optimal">
+                                </div>
+                                <div class="col-1">&#177</div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="range">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col">
+                                    Light intensity:
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="optimal">
+                                </div>
+                                <div class="col-1">&#177</div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="range">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col">
+                                    Soil moisture:
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="optimal">
+                                </div>
+                                <div class="col-1">&#177</div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="range">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col">
+                                    Temperature:
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="optimal">
+                                </div>
+                                <div class="col-1">&#177</div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="range">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button id="editPlant" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--modal window edit plant gardener-->
+    <div class="modal fade" id="editPlantGardener" tabindex="-1" role="dialog" aria-labelledby="editPlantGardenerLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPlantGardenerLabel">Add plant</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="plantName" class="col-form-label">Plant species: </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col">
+                                    Humidity:
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="optimal">
+                                </div>
+                                <div class="col-1">&#177</div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="range">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col">
+                                    Light intensity:
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="optimal">
+                                </div>
+                                <div class="col-1">&#177</div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="range">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col">
+                                    Soil moisture:
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="optimal">
+                                </div>
+                                <div class="col-1">&#177</div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="range">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col">
+                                    Temperature:
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="optimal">
+                                </div>
+                                <div class="col-1">&#177</div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="range">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button id="deletePlant" type="button" class="btn btn-primary">Delete plant</button>
+                    <button id="editPlant" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+        <script src="../JS/plants.js"></script>
+
+        <script src="../JS/app.js"></script>
+</body>
+
+</html>

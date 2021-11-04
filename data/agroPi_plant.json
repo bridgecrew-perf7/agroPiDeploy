@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "617ff606bc1c2dead2c77f6c"
+  },
+  "id": {
+    "$binary": {
+      "base64": "L3EU4Kb8TCOKx7EZQbav6Q==",
+      "subType": "03"
+    }
+  },
+  "species": "Abuta",
+  "name": "Abuta",
+  "user_id": 1,
+  "best_temperature": 20,
+  "temperature_margin": 5,
+  "best_air_humidity": 80,
+  "air_humidity_margin": 5,
+  "best_soil_moisture": 50,
+  "soil_moisture_margin": 10,
+  "best_light": 7,
+  "light_margin": 0.5
+},{
+  "_id": {
+    "$oid": "617ff606bc1c2dead2c77f6d"
+  },
+  "id": {
+    "$binary": {
+      "base64": "K0P8U+eHRKG2MWPQys+MUA==",
+      "subType": "03"
+    }
+  },
+  "species": "Acacia",
+  "name": "Acacia",
+  "user_id": 1,
+  "best_temperature": 17,
+  "temperature_margin": 2,
+  "best_air_humidity": 75,
+  "air_humidity_margin": 2.5,
+  "best_soil_moisture": 35,
+  "soil_moisture_margin": 7.5,
+  "best_light": 6,
+  "light_margin": 2.5
+}]
